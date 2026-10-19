@@ -206,6 +206,9 @@ ul.prices.center-list{text-align:center;list-style-position:inside;padding-left:
 .prost-fixed{background:#dd8ffb;padding:10px 16px;text-align:center}
 .prost-fixed h2{font-size:24px;text-transform:none}
 .prost-fixed-body{background:#debbea;padding:32px 16px 32px}
+.prost-removable-body .doctor .text,
+.prost-bugel .doctor .text,
+.prost-fixed-body .doctor .text{flex:1 1 100%;min-width:0;max-width:640px}
 
 /* Page: ssnimki */
 .ssnimki-body{background:#c2e4fc;padding:28px 16px 40px}
