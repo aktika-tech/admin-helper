@@ -208,7 +208,7 @@ ul.prices.center-list{text-align:center;list-style-position:inside;padding-left:
 .prost-fixed-body{background:#debbea;padding:32px 16px 32px}
 .prost-removable-body .doctor .text,
 .prost-bugel .doctor .text,
-.prost-fixed-body .doctor .text{flex:1 1 100%;min-width:0;max-width:640px}
+.prost-fixed-body .doctor .text{flex:1 1 100%;min-width:0;max-width:520px}
 
 /* Page: ssnimki */
 .ssnimki-body{background:#c2e4fc;padding:28px 16px 40px}
