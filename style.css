@@ -122,7 +122,7 @@ ul.prices.center-list{text-align:center;list-style-position:inside;padding-left:
 .mb32{margin-bottom:32px}
 
 /* Page: narkoz */
-.narkoz .big{font-size:clamp(34px,5vw,52px);padding:0 16px}
+.narkoz .big{font-size:clamp(34px,5vw,48px);padding:0 16px}
 .narkoz .body{max-width:520px;margin:0 auto;padding:16px 16px 36px;font-size:14px}
 .narkoz .body p{margin:0 0 20px}
 .narkoz .body ul{padding-left:20px;margin:0}
@@ -197,10 +197,10 @@ ul.prices.center-list{text-align:center;list-style-position:inside;padding-left:
 
 /* Page: protezirovanie */
 .prost-crowns{background:#ffc266;padding:6px 16px;text-align:center}
-.prost-crowns h2{font-size:28px;text-transform:none}
+.prost-crowns h2{font-size:24px;text-transform:none}
 .prost-crowns-body{background:#ffdead;padding:12px 16px 14px}
 .prost-removable{background:#f97b7b;padding:10px 16px;text-align:center}
-.prost-removable h2{font-size:22px;text-transform:none}
+.prost-removable h2{font-size:24px;text-transform:none}
 .prost-removable-body{background:#fbbaba;padding:12px 16px 24px}
 .prost-bugel{background:#fbbaba;padding:0 16px 32px}
 .prost-fixed{background:#dd8ffb;padding:10px 16px;text-align:center}
