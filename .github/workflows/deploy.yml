@@ -17,12 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
       - name: Publish site to gh-pages root
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: .
-          # не трогаем превью пул-реквестов и служебные файлы репозитория
+          folder: dist
+          # не трогаем превью пул-реквестов
           clean-exclude: pr-preview/
-          exclude: |
-            .github/

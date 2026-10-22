@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ортодонтия</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Ортодонтия">
 <!-- Фон: images/ortodontia.jpg -->
 <header class="hero hero-breketi">
   <h1>Ортодонтия</h1>
   <p>Зыкова С. С., Тлас Салех</p>
-  <a class="btn btn-red" href="index.html">Назад</a>
+  <a class="btn btn-red" href={withBase()}>Назад</a>
 </header>
 
 <section class="breketi-prices">
@@ -47,7 +43,4 @@
 
 <!-- Фото брекетов: images/brackets.jpg -->
 <div class="fullimg fullimg-brackets"></div>
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>

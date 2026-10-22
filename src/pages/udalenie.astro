@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Удаление</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="udalenie">
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Удаление" bodyClass="udalenie">
 <!-- Фон: images/udalenie-hero.jpg -->
 <header class="hero hero-udalenie">
   <h1 class="serif xl">Удаление</h1>
 </header>
 
-<div class="udalenie-back"><a class="btn btn-violet btn-float" href="index.html">Назад</a></div>
+<div class="udalenie-back"><a class="btn btn-violet btn-float" href={withBase()}>Назад</a></div>
 
 <section class="udalenie-deti" id="deti">
   <h2 class="big">Для детей</h2>
@@ -38,7 +34,4 @@
 </section>
 
 <!-- TODO: ниже на странице есть блок в рамке с бирюзовой обводкой — его содержимое не видно на скриншотах -->
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>

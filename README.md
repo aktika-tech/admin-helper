@@ -6,38 +6,37 @@
 
 [https://aktika-tech.github.io/admin-helper/](https://aktika-tech.github.io/admin-helper/)
 
-## Разделы сайта
-
-- [Главная](index.html)
-- [Врачи](prezentaciavrachi.html)
-- [Анестезия и седация](anestezia.html)
-- [Лечение во сне](narkoz.html)
-- [Ортодонтия](breketi.html)
-- [Имплантация](implantasia.html)
-- [Протезирование](protezirovanie.html)
-- [Снимки](ssnimki.html)
-
 ## Структура
 
-- `index.html` — главная страница (точка входа сайта)
-- `*.html` — страницы разделов
-- `style.css` — стили
-- `common.js` — меню и подвал, подставляемые на каждой странице
-- `.nojekyll` — отключает Jekyll, чтобы статические файлы публиковались как есть
+Сайт собран на [Astro](https://astro.build) и полностью статический; интерактивные части пишутся на React.
+
+- `src/pages/*.astro` — страницы; имя файла становится адресом (`anestezia.astro` → `anestezia.html`)
+- `src/layouts/Layout.astro` — общий каркас страницы: `<head>`, меню, подвал
+- `src/components/Nav.tsx` — меню (React-остров, подсвечивает текущий раздел, в т. ч. `#otbelivanie`)
+- `src/components/DoctorCard.astro` — карточка врача
+- `src/lib/nav.ts` — пункты меню
+- `src/lib/url.ts` — `withBase()`: ссылки с учётом подпапки на GitHub Pages
+- `src/styles/global.css` — стили
+- `public/` — файлы, которые копируются как есть (`images/`, `.nojekyll`)
+
+Картинки кладите в `public/images/`; в разметке ссылайтесь через `withBase('images/имя.jpg')`, в CSS — `url('/images/имя.jpg')`.
 
 ## Локальный запуск
 
-```bash
-python3 -m http.server
-```
+Нужен Node.js 22.23+ (в CI используется Node 24).
 
-Затем откройте <http://localhost:8000/>.
+```bash
+npm install
+npm run dev      # http://localhost:4321/admin-helper/
+npm run build    # сборка в dist/
+npm run preview  # просмотр собранного сайта
+```
 
 ## Публикация
 
-Сайт публикуется автоматически через GitHub Actions в ветку `gh-pages`:
+Сайт собирается и публикуется GitHub Actions в ветку `gh-pages`:
 
-- пуш в `main` обновляет основной сайт (`.github/workflows/deploy.yml`);
-- каждый пул-реквест получает превью по адресу `/pr-preview/pr-N/`, ссылка появляется комментарием в PR (`.github/workflows/preview.yml`).
+- пуш в `main` собирает сайт и выкладывает `dist/` в корень (`.github/workflows/deploy.yml`);
+- каждый пул-реквест получает превью по адресу `/pr-preview/pr-N/`, ссылка появляется комментарием в PR (`.github/workflows/preview.yml`). Для превью базовый путь задаётся переменной `BASE_PATH`.
 
-В настройках Pages источником должна быть ветка `gh-pages`. Файл `.nojekyll` гарантирует, что файлы отдаются без обработки Jekyll.
+В настройках Pages источником должна быть ветка `gh-pages`. Файл `public/.nojekyll` нужен, чтобы GitHub не прятал папку `_astro/`.

@@ -19,15 +19,15 @@ nav a:hover,nav a.active{text-decoration:underline}
 .hero h1.xl{font-size:clamp(40px,7vw,72px)}
 .hero h1.no-transform{text-transform:none}
 .hero p{max-width:640px;margin:0}
-.hero-anestezia{background-image:url('images/syringes.jpg')}
-.hero-narkoz{background-image:url('images/sleep.jpg')}
-.hero-breketi{background-image:url('images/ortodontia.jpg')}
-.hero-implantasia{background-image:url('images/implant-model.jpg')}
-.hero-protezirovanie{background-image:url('images/prosthesis-hero.jpg')}
-.hero-ssnimki{background-image:url('images/panoramic.jpg')}
-.hero-lechenie{background-image:url('images/lechenie-hero.jpg')}
-.hero-chistka{background-image:url('images/chistka-hero.jpg')}
-.hero-udalenie{background-image:url('images/udalenie-hero.jpg');min-height:80vh}
+.hero-anestezia{background-image:url('/images/syringes.jpg')}
+.hero-narkoz{background-image:url('/images/sleep.jpg')}
+.hero-breketi{background-image:url('/images/ortodontia.jpg')}
+.hero-implantasia{background-image:url('/images/implant-model.jpg')}
+.hero-protezirovanie{background-image:url('/images/prosthesis-hero.jpg')}
+.hero-ssnimki{background-image:url('/images/panoramic.jpg')}
+.hero-lechenie{background-image:url('/images/lechenie-hero.jpg')}
+.hero-chistka{background-image:url('/images/chistka-hero.jpg')}
+.hero-udalenie{background-image:url('/images/udalenie-hero.jpg');min-height:80vh}
 
 /* Buttons */
 .btn{display:inline-block;margin-top:28px;padding:14px 42px;border-radius:30px;color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
@@ -91,8 +91,8 @@ footer{background:#111;color:#bbb;text-align:center;padding:20px 16px;font-size:
 
 /* Media */
 .fullimg{min-height:420px;background:#bde9f5 center/cover no-repeat}
-.fullimg-brackets{background-image:url('images/brackets.jpg')}
-.fullimg-implant{background-color:#fff;background-size:contain;background-repeat:no-repeat;min-height:320px;background-image:url('images/implant-crown.jpg')}
+.fullimg-brackets{background-image:url('/images/brackets.jpg')}
+.fullimg-implant{background-color:#fff;background-size:contain;background-repeat:no-repeat;min-height:320px;background-image:url('/images/implant-crown.jpg')}
 
 /* Price lists */
 ul.prices{padding-left:22px;margin:0}
