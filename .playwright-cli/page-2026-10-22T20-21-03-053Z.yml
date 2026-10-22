@@ -1,0 +1,87 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link "Актика" [ref=e4] [cursor=pointer]:
+      - /url: /admin-helper/
+    - group [ref=e5]:
+      - navigation "Разделы" [ref=e6]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - link "Главная" [ref=e9] [cursor=pointer]:
+              - /url: /admin-helper/
+          - listitem [ref=e10]:
+            - link "Врачи" [ref=e11] [cursor=pointer]:
+              - /url: /admin-helper/prezentaciavrachi.html
+          - listitem [ref=e12]:
+            - link "Лечение" [ref=e13] [cursor=pointer]:
+              - /url: /admin-helper/lechenie.html
+          - listitem [ref=e14]:
+            - link "Удаление" [ref=e15] [cursor=pointer]:
+              - /url: /admin-helper/udalenie.html
+          - listitem [ref=e16]:
+            - link "Гигиена" [ref=e17] [cursor=pointer]:
+              - /url: /admin-helper/chistka.html
+          - listitem [ref=e18]:
+            - link "Анестезия и седация" [ref=e19] [cursor=pointer]:
+              - /url: /admin-helper/anestezia.html
+          - listitem [ref=e20]:
+            - link "Лечение во сне" [ref=e21] [cursor=pointer]:
+              - /url: /admin-helper/narkoz.html
+          - listitem [ref=e22]:
+            - link "Ортодонтия" [ref=e23] [cursor=pointer]:
+              - /url: /admin-helper/breketi.html
+          - listitem [ref=e24]:
+            - link "Имплантация" [ref=e25] [cursor=pointer]:
+              - /url: /admin-helper/implantasia.html
+          - listitem [ref=e26]:
+            - link "Протезирование" [ref=e27] [cursor=pointer]:
+              - /url: /admin-helper/protezirovanie.html
+          - listitem [ref=e28]:
+            - link "Снимки" [ref=e29] [cursor=pointer]:
+              - /url: /admin-helper/ssnimki.html
+  - generic [ref=e30]:
+    - main [ref=e31]:
+      - heading "Стоматологическая клиника Актика" [level=1] [ref=e32]
+      - navigation "Содержание" [ref=e33]:
+        - heading "Содержание" [level=2] [ref=e34]
+        - list [ref=e35]:
+          - listitem [ref=e36]:
+            - link "Врачи Наши врачи" [ref=e37] [cursor=pointer]:
+              - /url: /admin-helper/prezentaciavrachi.html
+              - generic [ref=e38]: Врачи
+              - generic [ref=e39]: Наши врачи
+          - listitem [ref=e40]:
+            - link "Лечение Всё о лечении кариеса, пульпита, периодонтита, пародонтита, гингивита в «Актике»" [ref=e41] [cursor=pointer]:
+              - /url: /admin-helper/lechenie.html
+              - generic [ref=e42]: Лечение
+              - generic [ref=e43]: Всё о лечении кариеса, пульпита, периодонтита, пародонтита, гингивита в «Актике»
+          - listitem [ref=e44]:
+            - link "Удаление" [ref=e45] [cursor=pointer]:
+              - /url: /admin-helper/udalenie.html
+          - listitem [ref=e47]:
+            - link "Гигиена" [ref=e48] [cursor=pointer]:
+              - /url: /admin-helper/chistka.html
+          - listitem [ref=e50]:
+            - link "Анестезия и седация Какие виды анестезии бывают и как проходит лечение с использованием седации" [ref=e51] [cursor=pointer]:
+              - /url: /admin-helper/anestezia.html
+              - generic [ref=e52]: Анестезия и седация
+              - generic [ref=e53]: Какие виды анестезии бывают и как проходит лечение с использованием седации
+          - listitem [ref=e54]:
+            - link "Лечение во сне" [ref=e55] [cursor=pointer]:
+              - /url: /admin-helper/narkoz.html
+          - listitem [ref=e57]:
+            - 'link "Ортодонтия Доктора: Зыкова С. С., Тлас Салех" [ref=e58] [cursor=pointer]':
+              - /url: /admin-helper/breketi.html
+              - generic [ref=e59]: Ортодонтия
+              - generic [ref=e60]: "Доктора: Зыкова С. С., Тлас Салех"
+          - listitem [ref=e61]:
+            - 'link "Имплантация Доктора: Крутикова Е. А., Филиппова А. С., Охременко Н. Е." [ref=e62] [cursor=pointer]':
+              - /url: /admin-helper/implantasia.html
+              - generic [ref=e63]: Имплантация
+              - generic [ref=e64]: "Доктора: Крутикова Е. А., Филиппова А. С., Охременко Н. Е."
+          - listitem [ref=e65]:
+            - link "Протезирование" [ref=e66] [cursor=pointer]:
+              - /url: /admin-helper/protezirovanie.html
+          - listitem [ref=e68]:
+            - link "Снимки" [ref=e69] [cursor=pointer]:
+              - /url: /admin-helper/ssnimki.html
+    - contentinfo [ref=e71]: © 2026 Стоматологическая клиника «Актика»

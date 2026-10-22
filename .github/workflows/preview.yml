@@ -29,6 +29,9 @@ jobs:
       - run: npm ci
         if: github.event.action != 'closed'
 
+      - run: npm run check:content
+        if: github.event.action != 'closed'
+
       # превью живёт в подпапке, поэтому ссылки должны собираться с другим base
       - run: npm run build
         if: github.event.action != 'closed'

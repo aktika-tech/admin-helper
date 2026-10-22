@@ -1,29 +1,22 @@
 ---
-import { withBase } from '../lib/url';
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
 
 interface Props {
-  id: string;
-  name: string;
-  color: string;
-  photo: string;
-  width?: number;
-  height?: number;
-  imgClass?: string;
-  // ссылка «ПроДокторов» в конце карточки
-  prodoctorov?: boolean;
+  doctor: CollectionEntry<'doctors'>;
 }
 
-const { id, name, color, photo, width = 333, height = 333, imgClass, prodoctorov = true } = Astro.props;
+const { doctor } = Astro.props;
+const { name, photo, prodoctorov } = doctor.data;
+const { Content } = await render(doctor);
 ---
-<article class={`c-${color}`} id={id}>
-  <div class="band"><h2>{name}</h2></div>
-  <div class="section"><div class="doctor">
-    <div class="text">
-      <slot />
-      {prodoctorov && (
-        <p>Узнать более подробную информацию о квалификации специалиста Вы можете на сайте <strong><a href="#">ПроДокторов</a></strong>. Направить Вам ссылку или Вы изучите самостоятельно?<span class="heart">♥</span></p>
-      )}
-    </div>
-    <div class="photo"><img src={withBase(`images/${photo}`)} alt={name} width={width} height={height} class={imgClass}></div>
-  </div></div>
+<article class="doctor">
+  <h2 id={doctor.id}>{name}</h2>
+  <figure class="doctor-photo"><Image src={photo} alt={name} width={440} /></figure>
+  <div class="doctor-text">
+    <Content />
+    {prodoctorov && (
+      <p>Узнать более подробную информацию о квалификации специалиста Вы можете на сайте <strong><a href="#">ПроДокторов</a></strong>. Направить Вам ссылку или Вы изучите самостоятельно?</p>
+    )}
+  </div>
 </article>

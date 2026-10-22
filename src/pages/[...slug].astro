@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import type { Page } from '../lib/pages';
+
+export async function getStaticPaths() {
+  // у главной и страницы врачей свои маршруты: index.astro и prezentaciavrachi.astro
+  const pages = await getCollection('pages', ({ id }) => id !== 'index' && id !== 'prezentaciavrachi');
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props as { page: Page };
+const { Content, headings } = await render(page);
+---
+<Layout id={page.id} title={page.data.title} description={page.data.description} headings={headings}>
+  <Content />
+</Layout>
