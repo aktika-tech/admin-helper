@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="icon" href="/admin-helper/pr-preview/pr-7/favicon.ico" sizes="any"><title>Удаление</title><link rel="stylesheet" href="/admin-helper/pr-preview/pr-7/_astro/Layout.Z-ONIduF.css"></head><body id="top"><div class="layout"><aside class="sidebar"><a class="site-name" href="/admin-helper/pr-preview/pr-7/"><img class="site-logo" src="/admin-helper/pr-preview/pr-7/logo-c.svg" alt="" width="28" height="28">Актика</a><details class="menu"><summary>Меню</summary><nav aria-label="Разделы"><ul><li><a href="/admin-helper/pr-preview/pr-7/">Главная</a></li><li><a href="/admin-helper/pr-preview/pr-7/prezentaciavrachi.html">Врачи</a></li><li><a href="/admin-helper/pr-preview/pr-7/lechenie.html">Лечение</a></li><li><a href="/admin-helper/pr-preview/pr-7/udalenie.html" aria-current="page">Удаление</a><ul><li><a href="/admin-helper/pr-preview/pr-7/udalenie.html#deti">Для детей</a></li><li><a href="/admin-helper/pr-preview/pr-7/udalenie.html#vzroslye">Для взрослых</a></li></ul></li><li><a href="/admin-helper/pr-preview/pr-7/chistka.html">Гигиена</a></li><li><a href="/admin-helper/pr-preview/pr-7/anestezia.html">Анестезия и седация</a></li><li><a href="/admin-helper/pr-preview/pr-7/narkoz.html">Лечение во сне</a></li><li><a href="/admin-helper/pr-preview/pr-7/breketi.html">Ортодонтия</a></li><li><a href="/admin-helper/pr-preview/pr-7/implantasia.html">Имплантация</a></li><li><a href="/admin-helper/pr-preview/pr-7/protezirovanie.html">Протезирование</a></li><li><a href="/admin-helper/pr-preview/pr-7/ssnimki.html">Снимки</a></li></ul></nav></details></aside><div class="page"><main class="content"><h1>Удаление</h1><h2 id="deti">Для детей</h2>
+<ul>
+<li>Удаление <em><strong>временного</strong></em> (молочного) зуба в нашей клинике — от <strong>2 300</strong> до <strong>3 200</strong> рублей.</li>
+</ul>
+<p>При необходимости отдельно оплачивается анестезия — от <strong>1 350</strong> рублей. На первом приёме доктор подберет Вашему ребёнку оптимальный вид анестезии с учетом индивидуальных особенностей маленького пациента.</p>
+<h2 id="vzroslye">Для взрослых</h2>
+<ul>
+<li>Удаление <em><strong>постоянного</strong></em> зуба — от <strong>3 800</strong> рублей, если <strong>сложное</strong> — от <strong>4 800</strong> рублей.</li>
+<li>Удаление <strong>зуба мудрости</strong> — от <strong>6 100</strong> рублей, если <strong>ретинированный</strong> — от <strong>9 200</strong> рублей.</li>
+<li>Пластика уздечки языка — хирургический метод — от <strong>6 500</strong> рублей, лазером — от <strong>8 800</strong> рублей. У КЕА — от <strong>12 300</strong> рублей.</li>
+<li>Снятие швов — <strong>900</strong> рублей, у КЕА — <strong>1 000</strong> рублей.</li>
+</ul>
+<p>При необходимости отдельно оплачивается анестезия — от <strong>1 350</strong> рублей.</p>
+<!-- TODO: на старой странице ниже был блок в рамке с бирюзовой обводкой — его содержимое не видно на скриншотах -->
+</main><footer class="site-footer">© 2026 Стоматологическая клиника «Актика»</footer></div></div><div class="to-top-sentinel"></div><a class="to-top" href="#top"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="visually-hidden">Наверх</span></a><script>
+  // Заголовки с id становятся ссылками на себя: клик ставит #id в адрес и прокручивает к заголовку
+  for (const h of document.querySelectorAll('.content :is(h2, h3, h4)[id]')) {
+    if (h.querySelector('a')) continue;
+    const a = document.createElement('a');
+    a.className = 'heading-link';
+    a.href = '#' + encodeURIComponent(h.id);
+    a.append(...h.childNodes);
+    h.append(a);
+  }
+
+  // До 900px меню закрывается после выбора пункта, иначе переход к разделу остаётся под ним
+  const menu = document.querySelector('.menu');
+  menu?.addEventListener('click', (e) => {
+    if (e.target.closest('a') && matchMedia('(max-width: 899px)').matches) menu.open = false;
+  });
+
+  // Кнопка «Наверх» видна, когда метка на высоте одного экрана ушла вверх за край окна.
+  // Без скрипта кнопка видна всегда и всё равно работает как ссылка на #top
+  const toTop = document.querySelector('.to-top');
+  const sentinel = document.querySelector('.to-top-sentinel');
+  if (toTop && sentinel && 'IntersectionObserver' in window) {
+    const setHidden = (hidden) => {
+      toTop.classList.toggle('is-hidden', hidden);
+      toTop.toggleAttribute('aria-hidden', hidden);
+      if (hidden) toTop.setAttribute('tabindex', '-1');
+      else toTop.removeAttribute('tabindex');
+    };
+    setHidden(true);
+    new IntersectionObserver(([entry]) => {
+      setHidden(entry.isIntersecting || entry.boundingClientRect.top > 0);
+    }).observe(sentinel);
+  }
+</script></body></html>
