@@ -1,5 +1,5 @@
 ---
-name: Евгений Викторович
+name: Слободчиков Евгений Викторович
 photo: ./images/slobotchikov.jpg
 order: 100
 ---
