@@ -1,26 +1,36 @@
 ---
-import Nav from '../components/Nav';
+import type { MarkdownHeading } from 'astro';
+import Sidebar from '../components/Sidebar.astro';
+import { withBase } from '../lib/url';
 import '../styles/global.css';
 
 interface Props {
+  // id страницы в коллекции pages
+  id: string;
   title: string;
-  bodyClass?: string;
+  description?: string;
+  headings?: MarkdownHeading[];
 }
 
-const { title, bodyClass } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const page = Astro.url.pathname.slice(base.length).replace(/^\//, '').replace(/^index\.html$/, '');
+const { id, title, description, headings = [] } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href={withBase('favicon.ico')} sizes="any">
 <title>{title}</title>
 </head>
-<body class={bodyClass}>
-<Nav client:load base={base} page={page} />
-<slot />
-<footer>© Клиника</footer>
+<body>
+<div class="layout">
+  <Sidebar current={id} headings={headings} />
+  <main class="content">
+    <h1>{title}</h1>
+    {description && <p class="lead">{description}</p>}
+    <slot />
+    <footer>© Клиника</footer>
+  </main>
+</div>
 </body>
 </html>

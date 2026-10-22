@@ -1,214 +1,201 @@
-*{box-sizing:border-box}
-body{margin:0;font-family:"Futura","Century Gothic","Trebuchet MS",Arial,sans-serif;font-weight:300;color:#111;line-height:1.5;font-size:16px}
-a{color:inherit}
-b,strong{font-weight:700}
-h1,h2,h3{font-family:Georgia,"Times New Roman",serif;text-transform:uppercase;margin:0}
+/* Палитра компании. Цвета задаются только здесь, дальше — через переменные. */
+:root {
+  --color-primary: #00524d;  /* боковое меню, заголовки, ссылки */
+  --color-accent: #ff7300;   /* фирменный цвет: активный пункт, наведение, фокус. Не для текста на белом */
+  --color-text: #363E45;     /* основной текст */
+  --color-support: #97C261;  /* маркеры списков, линии таблиц, разделители */
+  --color-surface: #ffffff;
+  --color-muted: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+  --color-on-primary: var(--color-surface);
+  --color-on-primary-dim: color-mix(in srgb, var(--color-surface) 78%, var(--color-primary));
+  --color-primary-hover: color-mix(in srgb, var(--color-surface) 10%, var(--color-primary));
 
-/* Navigation */
-nav{background:#111;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;padding:14px 16px}
-nav a{color:#fff;text-decoration:none;font-size:14px;letter-spacing:.05em;text-transform:uppercase}
-nav a:hover,nav a.active{text-decoration:underline}
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sidebar-width: 270px;
+  --content-width: 72ch;
+  --gap: 1rem;
+}
 
-/* Hero */
-.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;background:#444 center/cover no-repeat;padding:40px 16px}
-.hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
-.hero>*{position:relative}
-.hero h1{font-family:inherit;font-weight:400;font-size:clamp(28px,5vw,54px);margin-bottom:24px}
-.hero h1.serif{font-family:Georgia,serif}
-.hero h1.serif-bold{font-family:Georgia,serif;font-weight:700}
-.hero h1.xl{font-size:clamp(40px,7vw,72px)}
-.hero h1.no-transform{text-transform:none}
-.hero p{max-width:640px;margin:0}
-.hero-anestezia{background-image:url('/images/syringes.jpg')}
-.hero-narkoz{background-image:url('/images/sleep.jpg')}
-.hero-breketi{background-image:url('/images/ortodontia.jpg')}
-.hero-implantasia{background-image:url('/images/implant-model.jpg')}
-.hero-protezirovanie{background-image:url('/images/prosthesis-hero.jpg')}
-.hero-ssnimki{background-image:url('/images/panoramic.jpg')}
-.hero-lechenie{background-image:url('/images/lechenie-hero.jpg')}
-.hero-chistka{background-image:url('/images/chistka-hero.jpg')}
-.hero-udalenie{background-image:url('/images/udalenie-hero.jpg');min-height:80vh}
+*, *::before, *::after { box-sizing: border-box; }
 
-/* Buttons */
-.btn{display:inline-block;margin-top:28px;padding:14px 42px;border-radius:30px;color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-.btn-blue{background:#2f6ff0}
-.btn-red{background:#f22a2a}
-.btn-rose{background:#f87b7b}
-.btn-amber{background:#ffb300}
-.btn-orange{background:#f5a623}
-.btn-violet{background:#4a00ff;border:2px solid #111}
-.btn.mt0{margin-top:0}
-.btn.btn-float{margin:0 0 -20px}
+html { -webkit-text-size-adjust: 100%; }
 
-/* Layout */
-.band{padding:20px 16px;text-align:center}
-.band h2{font-size:clamp(18px,2.4vw,24px);letter-spacing:.02em}
-.section{padding:48px 16px}
-.wrap{max-width:520px;margin:0 auto}
-.wide{max-width:760px;margin:0 auto}
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+}
 
-/* Doctor */
-.doctor{display:flex;flex-wrap:wrap;gap:32px;max-width:640px;margin:0 auto;align-items:flex-start;justify-content:center}
-.doctor .text{flex:1 1 280px;max-width:240px;min-width:240px;font-size:14px}
-.doctor .photo{flex:0 0 auto}
-.doctor .photo img{display:block;width:100%;max-width:333px;height:auto;background:#fff}
-.doctor .photo img.img200{max-width:200px}
-.doctor .photo img.img373{max-width:373px}
-.doctor ul{padding-left:20px;margin:0 0 16px}
-.doctor p{margin:0 0 20px}
-.heart{color:#000}
-@media(max-width:720px){.doctor .text{max-width:none;min-width:0}.doctor{flex-direction:column;align-items:center}}
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
 
-/* Doctor colors */
-.c-orange .band,.c-peach .band{background:#ffad55}
-.c-orange .section,.c-peach .section{background:#f6c797}
-.c-green .band{background:#93cd93}.c-green .section{background:#b3deb1}
-.c-purple .band{background:#eba5f6}.c-purple .section{background:#f4d9fb}
-.c-blue .band,.c-sky .band{background:#8ae0f5}
-.c-blue .section,.c-sky .section{background:#c6ebf6}
-.c-pink .band{background:#f08585}.c-pink .section{background:#f2b9b9}
-.c-yellow .band{background:#f8ec7b}.c-yellow .section{background:#faf3b6}
+/* Каркас: меню слева, контент справа */
+.layout { min-height: 100vh; }
 
-/* Info pages */
-.info h2{text-align:center}
-.info p{margin:0 0 12px}
-.info ul{padding-left:22px}
-.info li{margin-bottom:24px;font-size:20px;color:#333}
-.mint{background:#dffffb}.mint-band{background:#b0fff0}
-.blue-band{background:#90d8f7}.blue-bg{background:#c6ebf6}
-.rose-band{background:#f2b9b9}.pink-bg{background:#ffd9d0}
-.lilac{background:#f2c8f6}
-.rule{display:flex;align-items:center;gap:0;max-width:773px;margin:0 auto 36px}
-.rule::before,.rule::after{content:"";flex:1;height:1px;background:#111}
-.rule span{background:#111;color:#fff;font-size:12px;letter-spacing:.12em;font-weight:700;padding:12px 28px;text-transform:uppercase;text-align:center}
-.center{text-align:center}
-.bottomrule{max-width:773px;margin:36px auto 0;border-top:1px solid #111}
-ol.analyses{padding-left:0;list-style:none;font-size:15px}
-ol.analyses li{font-size:15px;margin:0;color:#111}
+@media (min-width: 900px) {
+  .layout { display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+}
 
-/* Footer */
-footer{background:#111;color:#bbb;text-align:center;padding:20px 16px;font-size:13px}
+/* Боковое меню */
+.sidebar {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
 
-/* Media */
-.fullimg{min-height:420px;background:#bde9f5 center/cover no-repeat}
-.fullimg-brackets{background-image:url('/images/brackets.jpg')}
-.fullimg-implant{background-color:#fff;background-size:contain;background-repeat:no-repeat;min-height:320px;background-image:url('/images/implant-crown.jpg')}
+.sidebar a { color: inherit; text-decoration: none; }
+.sidebar a:hover { text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 3px; }
 
-/* Price lists */
-ul.prices{padding-left:22px;margin:0}
-ul.prices li{margin-bottom:8px}
-ul.prices.tight li{margin-bottom:2px}
-ul.prices.center-list{text-align:center;list-style-position:inside;padding-left:0}
+.site-name { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.02em; }
 
-/* Utilities */
-.fs13{font-size:13px}
-.fs14{font-size:14px}
-.fs16{font-size:16px}
-.fc30{font-size:clamp(22px,3vw,30px)}
-.fc36{font-size:clamp(26px,4vw,36px)}
-.mw490{max-width:490px}
-.mw500{max-width:500px}
-.mw520{max-width:520px}
-.mw640{max-width:640px}
-.mw770{max-width:770px}
-.pt16{padding-top:16px}
-.m0{margin:0}
-.m0mb8{margin:0 0 8px}
-.m0mb12{margin:0 0 12px}
-.mt24{margin-top:24px}
-.mt28{margin-top:28px}
-.mb24{margin-bottom:24px}
-.mb28{margin-bottom:28px}
-.mb32{margin-bottom:32px}
+.menu { display: contents; }
 
-/* Page: narkoz */
-.narkoz .big{font-size:clamp(34px,5vw,48px);padding:0 16px}
-.narkoz .body{max-width:520px;margin:0 auto;padding:16px 16px 36px;font-size:14px}
-.narkoz .body p{margin:0 0 20px}
-.narkoz .body ul{padding-left:20px;margin:0}
-.narkoz .body li{margin-bottom:4px}
-.narkoz .body small{font-size:11px}
-.narkoz .body p.intro{margin:0 0 6px}
-.narkoz .body p.no-margin{margin:0}
-.narkoz-deti .big small{font-size:20px}
-.narkoz .adult-head small{font-size:14px}
-.narkoz .body.body-tall{padding-top:28px;padding-bottom:50px}
-.narkoz .adult-head{max-width:520px;margin:0 auto;padding:0 16px}
-.narkoz .adult-head h2{padding:0}
-.narkoz-vrach{background:#d0e4f2;padding:32px 0 0}
-.narkoz-deti{background:#d9f4c8;padding:32px 0 0}
-.narkoz-vzroslye{background:#ffd5cb;padding:32px 0 0}
+.menu summary {
+  margin-left: auto;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-on-primary-dim);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu[open] summary { border-color: var(--color-accent); }
 
-/* Page: lechenie */
-.lechenie .big{font-size:clamp(34px,5vw,48px);text-align:center;padding:4px 16px 8px}
-.lechenie .sub{padding:2px 16px;text-align:center;font-size:20px}
-.lechenie .sub h3{font-size:20px}
-.lechenie .body{max-width:520px;margin:0 auto;padding:10px 16px 14px;font-size:14px}
-.lechenie .body p{margin:0 0 10px}
-.lechenie .body ul{margin:0 0 10px;padding-left:20px}
-.lechenie .body ul li{margin-bottom:4px}
-.lechenie .body i{font-style:italic}
-.lechenie .body u{text-decoration:underline}
-.lechenie .kids{background:#c1e8b5}.lechenie .kids .sub{background:#55a82b}
-.lechenie .adults{background:#ead3f0}.lechenie .adults .sub{background:#dd93f0}
-.lechenie .body.body-last{padding-bottom:24px}
-.lechenie .body.body-white{background:#fff;max-width:none;padding-bottom:40px}
-.lechenie .body-inner{max-width:490px;margin:14px auto 0}
-.caries-wrap{background:#fff;text-align:center;padding:24px 16px}
-.caries-img{display:block;max-width:540px;width:100%;height:auto;margin:0 auto}
+.menu nav { flex-basis: 100%; }
 
-/* Page: chistka */
-.chistka .big{font-size:clamp(34px,5vw,48px);text-align:center;padding:4px 16px}
-.chistka .body{max-width:520px;margin:0 auto;padding:14px 16px 28px;font-size:14px}
-.chistka .body p{margin:0 0 16px}
-.chistka .body p.no-margin{margin:0}
-.chistka-deti{background:#ddf8c2;padding:8px 0 4px}
-.chistka-vzroslye{background:#f7dea0;padding:8px 0 4px}
-.chistka-optragate{background:#f88e8e;padding:8px 16px 4px;text-align:center}
-.chistka-optragate h2{font-family:inherit;font-weight:400;text-transform:none;font-size:clamp(34px,5vw,48px)}
-.chistka-optragate .lead{max-width:770px;margin:0 auto 12px;font-family:Georgia,serif;font-size:19px;text-align:left;line-height:1.5}
-.chistka-klv{background:#f88e8e;padding:4px 16px 28px;text-align:center}
-.chistka-klv h3{font-size:20px;color:#444}
-.chistka-klv p{margin:12px 0 0;font-size:14px;color:#444}
-.chistka-airflow{background:#ffb0e0;padding:16px;text-align:center}
-.chistka-airflow h2{font-size:clamp(20px,2.6vw,26px);text-transform:none;font-weight:700}
-.chistka-airflow-body{background:#f7d4ec;padding:20px 16px 28px}
-.chistka-airflow-body .deal{font-size:20px;margin:30px 0 8px;text-transform:none}
-.chistka-otbelivanie{background:#d0f8f6;padding:12px 16px 40px}
-.chistka .chistka-otbelivanie .big{padding-bottom:20px}
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
 
-/* Page: udalenie */
-.udalenie .big{font-size:clamp(34px,5vw,48px);text-align:center;padding:8px 16px}
-.udalenie .body{max-width:520px;margin:0 auto;padding:10px 16px 28px;font-size:14px}
-.udalenie .body ul{padding-left:20px;margin:0 0 10px}
-.udalenie .body li{margin-bottom:6px}
-.udalenie .body p{margin:0}
-.udalenie-back{background:#d5f7c0;text-align:center;padding:28px 16px 0}
-.udalenie-deti{background:#d5f7c0;padding:24px 0 0}
-.udalenie-vzroslye{background:#f5c6b8;padding:8px 0 0}
+.sidebar nav > ul > li > a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  border-left: 4px solid transparent;
+  border-radius: 0 4px 4px 0;
+}
+.sidebar nav a[aria-current="page"] {
+  border-left-color: var(--color-accent);
+  background: var(--color-primary-hover);
+  font-weight: 700;
+}
 
-/* Page: breketi */
-.breketi-prices{background:#f7c9c9;padding:36px 16px 40px}
+/* Разделы текущей страницы */
+.sidebar nav ul ul { margin: 0.15rem 0 0.4rem; padding-left: 1.25rem; }
+.sidebar nav ul ul a {
+  display: block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-on-primary-dim);
+}
+.sidebar nav ul ul a:hover { color: var(--color-on-primary); }
 
-/* Page: implantasia */
-.implant-note{background:#fab56b;padding:20px 16px;text-align:center}
-.implant-note h2{font-size:clamp(18px,2.4vw,24px);line-height:1.9;text-transform:none;max-width:760px;margin:0 auto}
-.implant-prices{background:#f1d1ae;padding:28px 16px 36px}
+@media (min-width: 900px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: block;
+    padding: 1.5rem 1rem;
+  }
+  .site-name { display: block; margin: 0 0 1.25rem 0.75rem; }
+  .menu nav { margin-top: 0; }
+}
 
-/* Page: protezirovanie */
-.prost-crowns{background:#ffc266;padding:6px 16px;text-align:center}
-.prost-crowns h2{font-size:24px;text-transform:none}
-.prost-crowns-body{background:#ffdead;padding:12px 16px 14px}
-.prost-removable{background:#f97b7b;padding:10px 16px;text-align:center}
-.prost-removable h2{font-size:24px;text-transform:none}
-.prost-removable-body{background:#fbbaba;padding:12px 16px 24px}
-.prost-bugel{background:#fbbaba;padding:0 16px 32px}
-.prost-fixed{background:#dd8ffb;padding:10px 16px;text-align:center}
-.prost-fixed h2{font-size:24px;text-transform:none}
-.prost-fixed-body{background:#debbea;padding:32px 16px 32px}
-.prost-removable-body .doctor .text,
-.prost-bugel .doctor .text,
-.prost-fixed-body .doctor .text{flex:1 1 100%;min-width:0;max-width:520px}
+/* На десктопе меню всегда раскрыто, кнопка «Меню» не нужна */
+@supports selector(::details-content) {
+  @media (min-width: 900px) {
+    .menu summary { display: none; }
+    .menu::details-content { content-visibility: visible; display: contents; }
+  }
+}
 
-/* Page: ssnimki */
-.ssnimki-body{background:#c2e4fc;padding:28px 16px 40px}
+/* Контент: стили только для обычных элементов Markdown */
+.content {
+  max-width: calc(var(--content-width) + 2 * var(--gap));
+  padding: 1.5rem var(--gap) 2rem;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 900px) {
+  .content { padding: 2.5rem 2.5rem 3rem; max-width: calc(var(--content-width) + 5rem); }
+}
+
+.content > * + * { margin-top: 1rem; }
+.content * { margin-bottom: 0; }
+
+.content h1, .content h2, .content h3, .content h4 {
+  color: var(--color-primary);
+  line-height: 1.25;
+  font-weight: 700;
+  scroll-margin-top: 1rem;
+}
+.content h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-top: 0; }
+.content h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-support);
+}
+.content h3 { font-size: 1.2rem; margin-top: 1.75rem; }
+.content h4 { font-size: 1rem; margin-top: 1.25rem; }
+.content h2 + *, .content h3 + *, .content h4 + * { margin-top: 0.75rem; }
+
+.content .lead { font-size: 1.125rem; margin-top: 0.5rem; }
+
+.content p, .content ul, .content ol, .content table, .content blockquote { margin-top: 1rem; }
+.content ul, .content ol { padding-left: 1.5rem; }
+.content li + li { margin-top: 0.35rem; }
+.content li > ul, .content li > ol { margin-top: 0.35rem; }
+.content li > p { margin-top: 0.5rem; }
+.content ul > li::marker { color: var(--color-support); font-size: 1.1em; }
+.content ol > li::marker { color: var(--color-primary); font-weight: 700; }
+
+.content strong { font-weight: 700; color: var(--color-text); }
+.content em { font-style: italic; }
+
+.content a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
+.content a:hover { text-decoration-color: var(--color-accent); text-decoration-thickness: 2px; }
+
+.content img { display: block; max-width: 100%; height: auto; border-radius: 4px; }
+
+.content blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-muted);
+  border-left: 4px solid var(--color-support);
+}
+
+.content hr { border: 0; border-top: 1px solid var(--color-support); margin: 2rem 0; }
+
+/* Markdown-выравнивание столбцов (|---:|) приходит как style="text-align: …" */
+.content table { width: 100%; border-collapse: collapse; }
+.content th, .content td { padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; }
+.content th { border-bottom: 2px solid var(--color-support); color: var(--color-primary); font-weight: 700; }
+.content td { border-bottom: 1px solid var(--color-muted); }
+.content th[style*="right"], .content td[style*="right"] { text-align: right; }
+.content th[style*="center"], .content td[style*="center"] { text-align: center; }
+
+.content footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* Карточка врача (шаблон страницы врачей, не используется в Markdown) */
+.doctor { display: grid; gap: 1rem 1.5rem; align-items: start; }
+.doctor h2 { grid-column: 1 / -1; }
+.doctor .doctor-photo { margin: 0; }
+.doctor .doctor-photo img { width: 100%; max-width: 220px; }
+.doctor .doctor-text > :first-child { margin-top: 0; }
+@media (min-width: 600px) {
+  .doctor { grid-template-columns: 200px minmax(0, 1fr); }
+}

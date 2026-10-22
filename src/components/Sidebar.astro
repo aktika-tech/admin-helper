@@ -1,0 +1,40 @@
+---
+import type { MarkdownHeading } from 'astro';
+import { getNavPages, pageHref } from '../lib/pages';
+import { withBase } from '../lib/url';
+
+interface Props {
+  // id текущей страницы ('index', 'lechenie', …)
+  current: string;
+  // заголовки текущей страницы; разделы (h2) показываются под активным пунктом
+  headings: MarkdownHeading[];
+}
+
+const { current, headings } = Astro.props;
+const pages = await getNavPages();
+const sections = headings.filter((h) => h.depth === 2);
+---
+<aside class="sidebar">
+  <a class="site-name" href={withBase()}>Актика</a>
+  <details class="menu">
+    <summary>Меню</summary>
+    <nav aria-label="Разделы">
+      <ul>
+        {pages.map((page) => {
+          const active = page.id === current;
+          const href = withBase(pageHref(page.id));
+          return (
+            <li>
+              <a href={href} aria-current={active ? 'page' : undefined}>{page.data.nav.label ?? page.data.title}</a>
+              {active && sections.length > 0 && (
+                <ul>
+                  {sections.map((h) => <li><a href={`${href}#${h.slug}`}>{h.text}</a></li>)}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </details>
+</aside>
