@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Снимки</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Снимки">
 <!-- Фон: images/panoramic.jpg (панорамный снимок зубов) -->
 <header class="hero hero-ssnimki">
   <h1>Снимки</h1>
-  <a class="btn btn-blue" href="index.html">Назад</a>
+  <a class="btn btn-blue" href={withBase()}>Назад</a>
 </header>
 
 <section class="ssnimki-body">
@@ -27,7 +23,4 @@
     <p><b>Аксиография</b> — это диагностическая процедура, которая позволяет получить записи траекторий движения внутричелюстных суставов во время различных действий и положений нижней челюсти (открывания, закрывания рта и других движениях). Исследование позволяет получить точную информацию об успешности лечения или о его динамике. <b>Стоимость процедуры</b> — <b>15&nbsp;000</b> рублей.</p>
   </div>
 </section>
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>

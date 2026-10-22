@@ -1,0 +1,29 @@
+---
+import { withBase } from '../lib/url';
+
+interface Props {
+  id: string;
+  name: string;
+  color: string;
+  photo: string;
+  width?: number;
+  height?: number;
+  imgClass?: string;
+  // ссылка «ПроДокторов» в конце карточки
+  prodoctorov?: boolean;
+}
+
+const { id, name, color, photo, width = 333, height = 333, imgClass, prodoctorov = true } = Astro.props;
+---
+<article class={`c-${color}`} id={id}>
+  <div class="band"><h2>{name}</h2></div>
+  <div class="section"><div class="doctor">
+    <div class="text">
+      <slot />
+      {prodoctorov && (
+        <p>Узнать более подробную информацию о квалификации специалиста Вы можете на сайте <strong><a href="#">ПроДокторов</a></strong>. Направить Вам ссылку или Вы изучите самостоятельно?<span class="heart">♥</span></p>
+      )}
+    </div>
+    <div class="photo"><img src={withBase(`images/${photo}`)} alt={name} width={width} height={height} class={imgClass}></div>
+  </div></div>
+</article>

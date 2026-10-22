@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Гигиена и отбеливание</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="chistka">
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Гигиена и отбеливание" bodyClass="chistka">
 <!-- TODO: верхняя часть страницы (hero «ГИГИЕНА») не попала на скриншоты. Фон: images/chistka-hero.jpg -->
 <header class="hero hero-chistka">
   <h1 class="serif">Гигиена</h1>
-  <a class="btn btn-orange" href="index.html">Назад</a>
+  <a class="btn btn-orange" href={withBase()}>Назад</a>
 </header>
 
 <section class="chistka-deti" id="deti">
@@ -62,7 +58,4 @@
     <p class="mt24"><b>Отбеливание делают доктора:</b> Ковалева Л. В., Охременко Н. Е., Жигульских Ю. А.</p>
   </div>
 </section>
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>

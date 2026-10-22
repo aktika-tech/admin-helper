@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Лечение во сне</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="narkoz">
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Лечение во сне" bodyClass="narkoz">
 <!-- Фон: images/sleep.jpg -->
 <header class="hero hero-narkoz">
   <h1 class="serif-bold">Лечение во сне</h1>
-  <a class="btn btn-blue mt0" href="index.html">Назад</a>
+  <a class="btn btn-blue mt0" href={withBase()}>Назад</a>
 </header>
 
 <section class="narkoz-vrach" id="vrach">
@@ -77,7 +73,4 @@
     </div>
   </div>
 </section>
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>

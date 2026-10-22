@@ -1,0 +1,26 @@
+---
+import Nav from '../components/Nav';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  bodyClass?: string;
+}
+
+const { title, bodyClass } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const page = Astro.url.pathname.slice(base.length).replace(/^\//, '').replace(/^index\.html$/, '');
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+</head>
+<body class={bodyClass}>
+<Nav client:load base={base} page={page} />
+<slot />
+<footer>© Клиника</footer>
+</body>
+</html>

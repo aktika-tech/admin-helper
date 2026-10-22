@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Лечение</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="lechenie">
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
+---
+<Layout title="Лечение" bodyClass="lechenie">
 <!-- Фон: images/lechenie-hero.jpg -->
 <header class="hero hero-lechenie">
   <h1 class="serif">Лечение</h1>
   <p>Всё о лечении кариеса, пульпита, периодонтита, пародонтита, гингивита в «Актике»</p>
-  <a class="btn btn-amber" href="index.html">Назад</a>
+  <a class="btn btn-amber" href={withBase()}>Назад</a>
 </header>
 
 <!-- Схема стадий кариеса: images/caries-stages.jpg
      (1. Поверхностный кариес — болезненных ощущений нет; 2. Средний кариес; 3. Пульпит — появляется боль; 4. Периодонтит — сильная зубная боль) -->
 <div class="caries-wrap">
-  <img src="images/caries-stages.jpg" alt="Стадии кариеса: поверхностный кариес, средний кариес, пульпит, периодонтит" class="caries-img">
+  <img src={withBase('images/caries-stages.jpg')} alt="Стадии кариеса: поверхностный кариес, средний кариес, пульпит, периодонтит" class="caries-img">
 </div>
 
 <!-- ДЛЯ ДЕТЕЙ -->
@@ -85,7 +81,4 @@
     <ul><li>В стоимость уже включена анестезия, коффердам и пломба.</li></ul>
   </div>
 </section>
-
-<script src="common.js" defer></script>
-</body>
-</html>
+</Layout>
