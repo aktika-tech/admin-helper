@@ -27,7 +27,7 @@ const { id, title, description, headings = [] } = Astro.props;
   <Sidebar current={id} headings={headings} />
   <div class="page">
     <main class="content">
-      <h1>{title}</h1>
+      {id !== 'index' && <h1>{title}</h1>}
       {description && <p class="lead">{description}</p>}
       <slot />
     </main>
