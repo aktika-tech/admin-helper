@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="icon" href="/admin-helper/pr-preview/pr-6/favicon.ico" sizes="any"><title>Имплантация</title><link rel="stylesheet" href="/admin-helper/pr-preview/pr-6/_astro/Layout.BQuZonF0.css"></head><body id="top"><div class="layout"><aside class="sidebar"><a class="site-name" href="/admin-helper/pr-preview/pr-6/">Актика</a><details class="menu"><summary>Меню</summary><nav aria-label="Разделы"><ul><li><a href="/admin-helper/pr-preview/pr-6/">Главная</a></li><li><a href="/admin-helper/pr-preview/pr-6/prezentaciavrachi.html">Врачи</a></li><li><a href="/admin-helper/pr-preview/pr-6/lechenie.html">Лечение</a></li><li><a href="/admin-helper/pr-preview/pr-6/udalenie.html">Удаление</a></li><li><a href="/admin-helper/pr-preview/pr-6/chistka.html">Гигиена</a></li><li><a href="/admin-helper/pr-preview/pr-6/anestezia.html">Анестезия и седация</a></li><li><a href="/admin-helper/pr-preview/pr-6/narkoz.html">Лечение во сне</a></li><li><a href="/admin-helper/pr-preview/pr-6/breketi.html">Ортодонтия</a></li><li><a href="/admin-helper/pr-preview/pr-6/implantasia.html" aria-current="page">Имплантация</a></li><li><a href="/admin-helper/pr-preview/pr-6/protezirovanie.html">Протезирование</a></li><li><a href="/admin-helper/pr-preview/pr-6/ssnimki.html">Снимки</a></li></ul></nav></details></aside><div class="page"><main class="content"><h1>Имплантация</h1><p class="lead">Доктора: Крутикова Е. А., Филиппова А. С., Охременко Н. Е.</p><p>Стоимость имплантации зависит от производительности импланта. В нашей клинике представлены следующие импланты:</p>
+<ul>
+<li>(Швейцария) имплант <strong>Nobel Biocare</strong> — от <strong>36 000</strong> рублей стоимость самого импланта, от <strong>28 000</strong> рублей операция по его установке;</li>
+<li>(Германия) имплант <strong>Bredent</strong> — от <strong>33 000</strong> рублей сам имплант, от <strong>24 000</strong> рублей операция по его установке;</li>
+<li>(Бразилия) имплант <strong>Riellens</strong> — от <strong>24 000</strong> рублей, в эту стоимость входят сам имплант и операция по его установке, <strong>без</strong> учета иных манипуляций, которые могут потребоваться при проведении имплантации.</li>
+</ul>
+<p>Через время (3–4 месяца) устанавливается <strong>формирователь десны</strong> — от <strong>3 900</strong> рублей, затем на имплант надевается <strong>коронка</strong>, стоимость коронки на импланте — от <strong>42 000</strong> рублей.</p>
+<!-- Иллюстрация: файла в репозитории нет. Положите его в src/content/pages/images/implant-crown.jpg и добавьте:
+     ![Коронка на импланте](./images/implant-crown.jpg) -->
+</main><footer class="site-footer">© 2026 Стоматологическая клиника «Актика»</footer></div></div><div class="to-top-sentinel"></div><a class="to-top" href="#top"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="visually-hidden">Наверх</span></a><script>
+  // Заголовки с id становятся ссылками на себя: клик ставит #id в адрес и прокручивает к заголовку
+  for (const h of document.querySelectorAll('.content :is(h2, h3, h4)[id]')) {
+    if (h.querySelector('a')) continue;
+    const a = document.createElement('a');
+    a.className = 'heading-link';
+    a.href = '#' + encodeURIComponent(h.id);
+    a.append(...h.childNodes);
+    h.append(a);
+  }
+
+  // До 900px меню закрывается после выбора пункта, иначе переход к разделу остаётся под ним
+  const menu = document.querySelector('.menu');
+  menu?.addEventListener('click', (e) => {
+    if (e.target.closest('a') && matchMedia('(max-width: 899px)').matches) menu.open = false;
+  });
+
+  // Кнопка «Наверх» видна, когда метка на высоте одного экрана ушла вверх за край окна.
+  // Без скрипта кнопка видна всегда и всё равно работает как ссылка на #top
+  const toTop = document.querySelector('.to-top');
+  const sentinel = document.querySelector('.to-top-sentinel');
+  if (toTop && sentinel && 'IntersectionObserver' in window) {
+    const setHidden = (hidden) => {
+      toTop.classList.toggle('is-hidden', hidden);
+      toTop.toggleAttribute('aria-hidden', hidden);
+      if (hidden) toTop.setAttribute('tabindex', '-1');
+      else toTop.removeAttribute('tabindex');
+    };
+    setHidden(true);
+    new IntersectionObserver(([entry]) => {
+      setHidden(entry.isIntersecting || entry.boundingClientRect.top > 0);
+    }).observe(sentinel);
+  }
+</script></body></html>
