@@ -1,6 +1,5 @@
 ---
-title: Презентация докторов
-description: Наши врачи
+title: Врачи
 nav:
   label: Врачи
   order: 10

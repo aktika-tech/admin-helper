@@ -91,6 +91,7 @@ body {
 
 .site-name { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; letter-spacing: 0.02em; }
 .site-logo { width: 28px; height: 28px; flex: none; }
+.site-name-accent { color: var(--color-accent); }
 
 .menu { display: contents; }
 

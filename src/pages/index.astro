@@ -9,8 +9,7 @@ const page = (await getEntry('pages', 'index'))!;
 const sections = (await getNavPages()).filter((p) => p.id !== 'index');
 ---
 <Layout id={page.id} title={page.data.title} description={page.data.description}>
-  <nav class="toc" aria-label="Содержание">
-    <h2>Содержание</h2>
+  <nav class="toc">
     <ul>
       {sections.map((section) => (
         <li>
