@@ -1,3 +1,8 @@
+/* Размеры экрана (в @media нельзя использовать переменные, значения повторяются):
+   телефон  — до 600px;
+   планшет  — 600–899px (iPad вертикально), меню свёрнуто под кнопку «Меню»;
+   десктоп  — от 900px (и iPad горизонтально), меню слева; до 1200px оно уже. */
+
 /* Палитра компании. Цвета задаются только здесь, дальше — через переменные. */
 :root {
   --color-primary: #00524d;  /* боковое меню, заголовки, ссылки */
@@ -16,9 +21,13 @@
   --gap: 1rem;
 }
 
+@media (min-width: 600px) { :root { --gap: 2rem; } }
+@media (min-width: 900px) and (max-width: 1199px) { :root { --sidebar-width: 220px; } }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
 body {
   margin: 0;
@@ -32,7 +41,8 @@ body {
 :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
 
 /* Каркас: меню слева, контент справа */
-.layout { min-height: 100vh; }
+/* dvh — без панели браузера на iOS; vh — запасной вариант */
+.layout { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
 
 @media (min-width: 900px) {
   .layout { display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
@@ -42,7 +52,8 @@ body {
 .sidebar {
   background: var(--color-primary);
   color: var(--color-on-primary);
-  padding: 0.75rem 1rem;
+  /* Отступы не меньше выреза экрана (viewport-fit=cover в Layout.astro) */
+  padding: 0.75rem max(1rem, env(safe-area-inset-right)) 0.75rem max(1rem, env(safe-area-inset-left));
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -69,7 +80,21 @@ body {
 .menu summary::-webkit-details-marker { display: none; }
 .menu[open] summary { border-color: var(--color-accent); }
 
+/* Раскрытое меню — на всю ширину полосы (в Chrome/Safari содержимое details в отдельной обёртке) */
 .menu nav { flex-basis: 100%; }
+.menu::details-content { flex-basis: 100%; }
+
+/* Телефон и планшет: полоса с кнопкой «Меню» всегда видна сверху,
+   длинный список прокручивается внутри неё */
+@media (max-width: 899px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+  .menu nav { max-height: calc(100vh - 5rem); max-height: calc(100dvh - 5rem); overflow-y: auto; }
+}
 
 .sidebar ul { list-style: none; margin: 0; padding: 0; }
 
@@ -100,9 +125,10 @@ body {
     position: sticky;
     top: 0;
     height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
     display: block;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1.5rem max(1rem, env(safe-area-inset-left));
   }
   .site-name { display: block; margin: 0 0 1.25rem 0.75rem; }
   .menu nav { margin-top: 0; }
@@ -116,15 +142,24 @@ body {
   }
 }
 
+/* Правая часть: контент и футер на всю её ширину, футер прижат к низу экрана */
+.page { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
 /* Контент: стили только для обычных элементов Markdown */
 .content {
   max-width: calc(var(--content-width) + 2 * var(--gap));
-  padding: 1.5rem var(--gap) 2rem;
+  padding: 1.5rem max(var(--gap), env(safe-area-inset-right)) 2rem max(var(--gap), env(safe-area-inset-left));
   overflow-wrap: break-word;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Колонка по центру свободного места, чтобы справа не оставалось пустое поле */
+.content { width: 100%; margin-inline: auto; }
+
 @media (min-width: 900px) {
-  .content { padding: 2.5rem 2.5rem 3rem; max-width: calc(var(--content-width) + 5rem); }
+  .content { padding: 2.5rem max(2.5rem, env(safe-area-inset-right)) 3rem 2.5rem; max-width: calc(var(--content-width) + 5rem); }
 }
 
 .content > * + * { margin-top: 1rem; }
@@ -136,16 +171,42 @@ body {
   font-weight: 700;
   scroll-margin-top: 1rem;
 }
-.content h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-top: 0; }
+/* До 900px заголовок не должен уходить под закреплённую полосу меню */
+@media (max-width: 899px) {
+  .content :is(h1, h2, h3, h4) { scroll-margin-top: 6rem; }
+}
+.content h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-top: 0; }
 .content h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 2.5rem;
   padding-bottom: 0.35rem;
   border-bottom: 2px solid var(--color-support);
 }
-.content h3 { font-size: 1.2rem; margin-top: 1.75rem; }
+.content h3 { font-size: 1.1rem; margin-top: 1.75rem; }
+@media (min-width: 600px) {
+  .content h2 { font-size: 1.5rem; }
+  .content h3 { font-size: 1.2rem; }
+}
 .content h4 { font-size: 1rem; margin-top: 1.25rem; }
 .content h2 + *, .content h3 + *, .content h4 + * { margin-top: 0.75rem; }
+
+/* Заголовок-ссылка на себя (оборачивается скриптом в Layout.astro) */
+.content .heading-link { color: inherit; text-decoration: none; }
+.content .heading-link::after {
+  content: "#" / "";
+  margin-left: 0.35em;
+  color: var(--color-accent);
+  opacity: 0;
+}
+.content .heading-link:hover::after,
+.content .heading-link:focus-visible::after { opacity: 1; }
+
+/* Сенсорные экраны: наведения нет, пальцу нужна цель от 44px */
+@media (hover: none), (pointer: coarse) {
+  .sidebar nav > ul > li > a { display: flex; align-items: center; min-height: 44px; }
+  .menu summary { min-height: 44px; padding: 0.6rem 0.9rem; }
+  .content .heading-link::after { opacity: 0.5; }
+}
 
 .content .lead { font-size: 1.125rem; margin-top: 0.5rem; }
 
@@ -176,26 +237,94 @@ body {
 .content hr { border: 0; border-top: 1px solid var(--color-support); margin: 2rem 0; }
 
 /* Markdown-выравнивание столбцов (|---:|) приходит как style="text-align: …" */
-.content table { width: 100%; border-collapse: collapse; }
+/* До 900px широкая таблица прокручивается сама, а не растягивает страницу */
+.content table { display: block; overflow-x: auto; border-collapse: collapse; }
+@media (min-width: 900px) {
+  .content table { display: table; width: 100%; }
+}
 .content th, .content td { padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; }
 .content th { border-bottom: 2px solid var(--color-support); color: var(--color-primary); font-weight: 700; }
 .content td { border-bottom: 1px solid var(--color-muted); }
 .content th[style*="right"], .content td[style*="right"] { text-align: right; }
 .content th[style*="center"], .content td[style*="center"] { text-align: center; }
 
-.content footer {
-  margin-top: 3rem;
-  padding-top: 1rem;
+.content > :last-child { margin-bottom: 3rem; }
+
+.site-footer {
+  padding: 1rem max(var(--gap), env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(var(--gap), env(safe-area-inset-left));
   border-top: 1px solid var(--color-muted);
   font-size: 0.875rem;
+}
+@media (min-width: 900px) {
+  .site-footer { padding-inline: 2.5rem max(2.5rem, env(safe-area-inset-right)); }
+}
+
+/* Кнопка «Наверх» (Layout.astro, на всех страницах, кроме главной) */
+/* Метка на высоте одного экрана: пока она ниже края окна, кнопка скрыта */
+.to-top-sentinel { position: absolute; top: 100vh; height: 0; }
+.to-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  /* Ниже закреплённой полосы меню (z-index: 10) */
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--color-text) 30%, transparent);
+  transition: opacity 0.2s, visibility 0.2s, background-color 0.2s;
+}
+.to-top:hover { background: var(--color-primary-hover); border-color: var(--color-accent); }
+.to-top.is-hidden { opacity: 0; visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Карточка врача (шаблон страницы врачей, не используется в Markdown) */
 .doctor { display: grid; gap: 1rem 1.5rem; align-items: start; }
 .doctor h2 { grid-column: 1 / -1; }
 .doctor .doctor-photo { margin: 0; }
-.doctor .doctor-photo img { width: 100%; max-width: 220px; }
+.doctor .doctor-photo img { width: 100%; max-width: 220px; margin-inline: auto; }
 .doctor .doctor-text > :first-child { margin-top: 0; }
 @media (min-width: 600px) {
   .doctor { grid-template-columns: 200px minmax(0, 1fr); }
+  .doctor .doctor-photo img { margin-inline: 0; }
 }
+
+/* Содержание на главной странице */
+.toc h2 { margin-top: 0; }
+.toc ul { list-style: none; padding-left: 0; margin-top: 0.75rem; }
+.toc li + li { margin-top: 0.5rem; }
+.toc a {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  border-left: 4px solid var(--color-support);
+  border-radius: 0 4px 4px 0;
+  background: var(--color-muted);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.toc a:hover { border-left-color: var(--color-accent); text-decoration: none; }
+.toc a:hover .toc-title {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 3px;
+}
+.toc-title { display: block; font-weight: 700; color: var(--color-primary); }
+.toc-desc { display: block; font-size: 0.875rem; color: color-mix(in srgb, var(--color-text) 65%, var(--color-surface)); }

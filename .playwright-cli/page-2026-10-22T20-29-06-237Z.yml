@@ -1,0 +1,174 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link "Актика" [ref=e4] [cursor=pointer]:
+      - /url: /admin-helper/
+    - group [ref=e5]:
+      - navigation "Разделы" [ref=e6]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - link "Главная" [ref=e9] [cursor=pointer]:
+              - /url: /admin-helper/
+          - listitem [ref=e10]:
+            - link "Врачи" [ref=e11] [cursor=pointer]:
+              - /url: /admin-helper/prezentaciavrachi.html
+          - listitem [ref=e12]:
+            - link "Лечение" [ref=e13] [cursor=pointer]:
+              - /url: /admin-helper/lechenie.html
+            - list [ref=e14]:
+              - listitem [ref=e15]:
+                - link "Для детей" [ref=e16] [cursor=pointer]:
+                  - /url: /admin-helper/lechenie.html#deti
+              - listitem [ref=e17]:
+                - link "Для взрослых" [ref=e18] [cursor=pointer]:
+                  - /url: /admin-helper/lechenie.html#vzroslye
+          - listitem [ref=e19]:
+            - link "Удаление" [ref=e20] [cursor=pointer]:
+              - /url: /admin-helper/udalenie.html
+          - listitem [ref=e21]:
+            - link "Гигиена" [ref=e22] [cursor=pointer]:
+              - /url: /admin-helper/chistka.html
+          - listitem [ref=e23]:
+            - link "Анестезия и седация" [ref=e24] [cursor=pointer]:
+              - /url: /admin-helper/anestezia.html
+          - listitem [ref=e25]:
+            - link "Лечение во сне" [ref=e26] [cursor=pointer]:
+              - /url: /admin-helper/narkoz.html
+          - listitem [ref=e27]:
+            - link "Ортодонтия" [ref=e28] [cursor=pointer]:
+              - /url: /admin-helper/breketi.html
+          - listitem [ref=e29]:
+            - link "Имплантация" [ref=e30] [cursor=pointer]:
+              - /url: /admin-helper/implantasia.html
+          - listitem [ref=e31]:
+            - link "Протезирование" [ref=e32] [cursor=pointer]:
+              - /url: /admin-helper/protezirovanie.html
+          - listitem [ref=e33]:
+            - link "Снимки" [ref=e34] [cursor=pointer]:
+              - /url: /admin-helper/ssnimki.html
+  - generic [ref=e35]:
+    - main [ref=e36]:
+      - heading "Лечение" [level=1] [ref=e37]
+      - paragraph [ref=e38]: Всё о лечении кариеса, пульпита, периодонтита, пародонтита, гингивита в «Актике»
+      - heading [level=2] [ref=e39]:
+        - link "Для детей" [ref=e40] [cursor=pointer]:
+          - /url: "#deti"
+      - heading [level=3] [ref=e41]:
+        - link "Кариес" [ref=e42] [cursor=pointer]:
+          - /url: "#%D0%BA%D0%B0%D1%80%D0%B8%D0%B5%D1%81"
+      - paragraph [ref=e43]: Я сориентирую Вас по лечению кариеса у детей в нашей клинике.
+      - list [ref=e44]:
+        - listitem [ref=e45]:
+          - text: Стоимость лечения кариеса детям
+          - strong [ref=e46]: от 9 210 до 9 850 рублей
+          - text: ", зависит от степени развития кариеса."
+      - heading [level=3] [ref=e47]:
+        - link "Пульпит" [ref=e48] [cursor=pointer]:
+          - /url: "#%D0%BF%D1%83%D0%BB%D1%8C%D0%BF%D0%B8%D1%82"
+      - paragraph [ref=e49]: Я сориентирую Вас по лечению пульпита у детей в нашей клинике.
+      - list [ref=e50]:
+        - listitem [ref=e51]:
+          - text: Стоимость лечения пульпита детям
+          - strong [ref=e52]: от 12 815 до 22 050 рублей
+          - text: (с эндо 4 канала с пломбой в одно посещение).
+      - heading [level=3] [ref=e53]:
+        - link "Периодонтит" [ref=e54] [cursor=pointer]:
+          - /url: "#%D0%BF%D0%B5%D1%80%D0%B8%D0%BE%D0%B4%D0%BE%D0%BD%D1%82%D0%B8%D1%82"
+      - paragraph [ref=e55]: Я сориентирую Вас по лечению периодонтита у детей в нашей клинике.
+      - list [ref=e56]:
+        - listitem [ref=e57]:
+          - text: Стоимость лечения периодонтита детям определяется количеством каналов в зубе. Таким образом, стоимость лечения
+          - strong [ref=e58]: от 14 000 рублей
+          - text: (если требуется лечение 1 канала).
+      - paragraph [ref=e59]: Более подробный расчет Вам сделает доктор после консультации и постановки диагноза. При необходимости отдельно оплачивается анестезия.
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - text: (Аппликационная анестезия —
+          - strong [ref=e62]: "650"
+          - text: рублей, проводниковая и инфильтрационная анестезия —
+          - strong [ref=e63]: 1 250
+          - text: рублей)
+      - paragraph [ref=e64]:
+        - strong [ref=e65]: "Стоимость:"
+      - list [ref=e66]:
+        - listitem [ref=e67]:
+          - text: 1 канал — от
+          - strong [ref=e68]: 10 200
+          - text: рублей
+        - listitem [ref=e69]:
+          - text: 3 канала, если поражена только жевательная поверхность — от
+          - strong [ref=e70]: 13 200
+          - text: рублей
+        - listitem [ref=e71]:
+          - text: 3 канала, если поражена контактная поверхность — от
+          - strong [ref=e72]: 13 900
+          - text: рублей
+        - listitem [ref=e73]:
+          - text: 4 канала, если поражена только жевательная поверхность — от
+          - strong [ref=e74]: 16 200
+          - text: рублей
+        - listitem [ref=e75]:
+          - text: 4 канала, если поражена контактная поверхность — от
+          - strong [ref=e76]: 19 400
+          - text: рублей
+      - heading [level=2] [ref=e77]:
+        - link "Для взрослых" [ref=e78] [cursor=pointer]:
+          - /url: "#vzroslye"
+      - heading [level=3] [ref=e79]:
+        - link "Кариес" [ref=e80] [cursor=pointer]:
+          - /url: "#%D0%BA%D0%B0%D1%80%D0%B8%D0%B5%D1%81-1"
+      - list [ref=e81]:
+        - listitem [ref=e82]:
+          - text: Стоимость лечения кариеса взрослым
+          - strong [ref=e83]: от 8 375 до 17 740 рублей
+          - text: ", зависит от степени развития кариеса."
+        - listitem [ref=e84]:
+          - text: У КЛВ —
+          - strong [ref=e85]: от 9 840 до 16 350 рублей
+          - text: .
+      - heading [level=3] [ref=e86]:
+        - link "Пульпит" [ref=e87] [cursor=pointer]:
+          - /url: "#%D0%BF%D1%83%D0%BB%D1%8C%D0%BF%D0%B8%D1%82-1"
+      - paragraph [ref=e88]: Я сориентирую Вас по лечению пульпита у взрослых в нашей клинике.
+      - list [ref=e89]:
+        - listitem [ref=e90]: Стоимость лечения пульпита взрослым определяется количеством каналов в зубе. Таким образом, стоимость лечения зависит от числа каналов.
+      - paragraph [ref=e91]:
+        - strong [ref=e92]: "Стоимость:"
+      - list [ref=e93]:
+        - listitem [ref=e94]:
+          - text: 1 канал — от
+          - strong [ref=e95]: 16 665
+          - text: рублей, у КЛВ —
+          - strong [ref=e96]: 20 200
+          - text: рублей
+        - listitem [ref=e97]:
+          - text: 2 канала — от
+          - strong [ref=e98]: 22 215
+          - text: рублей, у КЛВ —
+          - strong [ref=e99]: 24 610
+          - text: рублей
+        - listitem [ref=e100]:
+          - text: 3 канала — от
+          - strong [ref=e101]: 27 030
+          - text: рублей, у КЛВ —
+          - strong [ref=e102]: 30 300
+          - text: рублей
+      - heading [level=3] [ref=e103]:
+        - link "Периодонтит" [ref=e104] [cursor=pointer]:
+          - /url: "#%D0%BF%D0%B5%D1%80%D0%B8%D0%BE%D0%B4%D0%BE%D0%BD%D1%82%D0%B8%D1%82-1"
+      - list [ref=e105]:
+        - listitem [ref=e106]:
+          - text: Стоимость лечения периодонтита взрослым —
+          - strong [ref=e107]: от 19 135 рублей
+          - text: .
+      - heading [level=3] [ref=e108]:
+        - link "Реставрация" [ref=e109] [cursor=pointer]:
+          - /url: "#%D1%80%D0%B5%D1%81%D1%82%D0%B0%D0%B2%D1%80%D0%B0%D1%86%D0%B8%D1%8F"
+      - list [ref=e110]:
+        - listitem [ref=e111]:
+          - text: Стоимость реставрации взрослым —
+          - strong [ref=e112]: от 12 150 рублей
+          - text: ", зависит от материала пломбы и сложности."
+      - paragraph [ref=e113]: Более подробный расчет Вам сделает доктор после консультации и постановки диагноза.
+      - list [ref=e114]:
+        - listitem [ref=e115]: В стоимость уже включена анестезия, коффердам и пломба.
+    - contentinfo [ref=e116]: © 2026 Стоматологическая клиника «Актика»

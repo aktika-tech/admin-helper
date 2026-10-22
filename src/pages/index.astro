@@ -1,0 +1,25 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { getNavPages, pageHref } from '../lib/pages';
+import { withBase } from '../lib/url';
+
+// Заголовок главной — src/content/pages/index.md, разделы собираются из навигации
+const page = (await getEntry('pages', 'index'))!;
+const sections = (await getNavPages()).filter((p) => p.id !== 'index');
+---
+<Layout id={page.id} title={page.data.title} description={page.data.description}>
+  <nav class="toc" aria-label="Содержание">
+    <h2>Содержание</h2>
+    <ul>
+      {sections.map((section) => (
+        <li>
+          <a href={withBase(pageHref(section.id))}>
+            <span class="toc-title">{section.data.nav.label ?? section.data.title}</span>
+            {section.data.description && <span class="toc-desc">{section.data.description}</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</Layout>

@@ -4,10 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import type { Page } from '../lib/pages';
 
 export async function getStaticPaths() {
-  // у страницы врачей свой маршрут: prezentaciavrachi.astro
-  const pages = await getCollection('pages', ({ id }) => id !== 'prezentaciavrachi');
+  // у главной и страницы врачей свои маршруты: index.astro и prezentaciavrachi.astro
+  const pages = await getCollection('pages', ({ id }) => id !== 'index' && id !== 'prezentaciavrachi');
   return pages.map((page) => ({
-    params: { slug: page.id === 'index' ? undefined : page.id },
+    params: { slug: page.id },
     props: { page },
   }));
 }

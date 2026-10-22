@@ -10,8 +10,8 @@ const { doctor } = Astro.props;
 const { name, photo, prodoctorov } = doctor.data;
 const { Content } = await render(doctor);
 ---
-<article class="doctor" id={doctor.id}>
-  <h2>{name}</h2>
+<article class="doctor">
+  <h2 id={doctor.id}>{name}</h2>
   <figure class="doctor-photo"><Image src={photo} alt={name} width={440} /></figure>
   <div class="doctor-text">
     <Content />
