@@ -83,7 +83,8 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  /* Без отступа между строками: свёрнутое меню — пустая вторая строка, иначе логотип и кнопка смещаются вверх */
+  gap: 0 0.5rem;
 }
 
 .sidebar a { color: inherit; text-decoration: none; }
@@ -124,7 +125,7 @@ body {
     z-index: 10;
     padding-top: max(0.75rem, env(safe-area-inset-top));
   }
-  .menu nav { max-height: calc(100vh - 5rem); max-height: calc(100dvh - 5rem); overflow-y: auto; }
+  .menu nav { max-height: calc(100vh - 5rem); max-height: calc(100dvh - 5rem); overflow-y: auto; padding-top: 0.5rem; }
 }
 
 .sidebar ul { list-style: none; margin: 0; padding: 0; }

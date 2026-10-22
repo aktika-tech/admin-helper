@@ -1,0 +1,8 @@
+{
+  "skills": {
+    "disabled": [
+      "playwright-cli"
+    ]
+  },
+  "$version": 4
+}
