@@ -15,7 +15,10 @@ const pages = await getNavPages();
 const sections = headings.filter((h) => h.depth === 2);
 ---
 <aside class="sidebar">
-  <a class="site-name" href={withBase()}>Актика</a>
+  <a class="site-name" href={withBase()}>
+    <img class="site-logo" src={withBase('/logo-c.svg')} alt="" width="28" height="28" />
+    Актика
+  </a>
   <details class="menu">
     <summary>Меню</summary>
     <nav aria-label="Разделы">
