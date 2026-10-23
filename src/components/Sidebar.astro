@@ -1,5 +1,7 @@
 ---
 import type { MarkdownHeading } from 'astro';
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { getNavPages, pageHref } from '../lib/pages';
 import { withBase } from '../lib/url';
 
@@ -19,9 +21,22 @@ const sections = headings.filter((h) => h.depth === 2);
     <img class="site-logo" src={withBase('/logo-c.svg')} alt="" width="28" height="28" />
     <span class="site-name-text">Актика<span class="site-name-accent">.helper</span></span>
   </a>
+  {/* Свернуть меню до узкой полосы (от 900px). Без client:* — отрисовывается в HTML без React,
+      нажатие и подписи обрабатывает скрипт в Layout.astro */}
+  <Button
+    variant="ghost"
+    size="icon"
+    className="sidebar-toggle"
+    aria-controls="site-nav"
+    aria-expanded="true"
+    aria-label="Свернуть меню"
+  >
+    <PanelLeftClose className="sidebar-toggle-close" aria-hidden="true" />
+    <PanelLeftOpen className="sidebar-toggle-open" aria-hidden="true" />
+  </Button>
   <details class="menu">
     <summary>Меню</summary>
-    <nav aria-label="Разделы">
+    <nav id="site-nav" aria-label="Разделы">
       <ul>
         {pages.map((page) => {
           const active = page.id === current;
