@@ -3,6 +3,42 @@
    планшет  — 600–899px (iPad вертикально), меню свёрнуто под кнопку «Меню»;
    десктоп  — от 900px (и iPad горизонтально), меню слева; до 1200px оно уже. */
 
+/* Tailwind — только для компонентов shadcn/ui (src/components/ui). Без preflight:
+   сброс стилей свой, ниже. Слои Tailwind слабее обычных правил этого файла */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Тёмной темы у сайта нет: dark:-классы shadcn срабатывают только внутри .dark */
+@custom-variant dark (&:is(.dark *));
+
+/* Цвета shadcn/ui берутся из палитры компании. inline — утилиты ссылаются на переменные напрямую
+   (bg-primary → var(--primary)). Одноимённые с палитрой переменные Tailwind (--color-primary,
+   --radius-md, --ease-out…) попадают в слой theme и всегда проигрывают значениям из :root ниже */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* Сброс из preflight Tailwind — только для компонентов shadcn/ui (у них есть data-slot):
+   без него кнопка получает шрифт, цвет и серый фон браузера */
+@layer base {
+  [data-slot], [data-slot] *, [data-slot]::before, [data-slot]::after { margin: 0; padding: 0; border: 0 solid var(--border); }
+  button[data-slot] { font: inherit; color: inherit; background-color: transparent; cursor: pointer; }
+}
+
 /* Палитра компании. Цвета задаются только здесь, дальше — через переменные. */
 :root {
   --color-primary: #00524d;  /* боковое меню, заголовки, ссылки */
@@ -14,6 +50,22 @@
   --color-on-primary: var(--color-surface);
   --color-on-primary-dim: color-mix(in srgb, var(--color-surface) 78%, var(--color-primary));
   --color-primary-hover: color-mix(in srgb, var(--color-surface) 10%, var(--color-primary));
+
+  /* Переменные темы shadcn/ui — через палитру выше. Своего красного нет, «опасное» действие — фирменный цвет */
+  --background: var(--color-surface);
+  --foreground: var(--color-text);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-on-primary);
+  --secondary: var(--color-muted);
+  --secondary-foreground: var(--color-primary);
+  --accent: var(--color-muted);
+  --accent-foreground: var(--color-primary);
+  --muted: var(--color-muted);
+  --muted-foreground: color-mix(in srgb, var(--color-text) 65%, var(--color-surface));
+  --destructive: var(--color-accent);
+  --border: color-mix(in srgb, var(--color-text) 15%, var(--color-surface));
+  --input: var(--border);
+  --ring: var(--color-accent);
 
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --sidebar-width: 270px;
@@ -47,7 +99,8 @@
 }
 
 @media (min-width: 600px) { :root { --gap: 2rem; } }
-@media (min-width: 900px) and (max-width: 1199px) { :root { --sidebar-width: 220px; } }
+/* 260px — минимум, при котором название и кнопка «Свернуть меню» помещаются в одну строку */
+@media (min-width: 900px) and (max-width: 1199px) { :root { --sidebar-width: 260px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -176,11 +229,53 @@ body {
     height: 100vh;
     height: 100dvh;
     overflow-y: auto;
-    display: block;
+    /* Пока ширина меню анимируется, содержимое обрезается, а не переносится */
+    overflow-x: hidden;
+    /* Название и кнопка «Свернуть меню» в одной строке, ниже — список на всю ширину */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: start;
+    align-items: center;
+    gap: 0 0.25rem;
     padding: 1.5rem 1rem 1.5rem max(1rem, env(safe-area-inset-left));
   }
-  .site-name { display: flex; margin: 0 0 1.25rem 0.75rem; }
-  .menu nav { margin-top: 0; }
+  .site-name { display: flex; min-width: 0; margin: 0 0 1.25rem 0.75rem; white-space: nowrap; }
+  .site-name-text { overflow: hidden; text-overflow: clip; }
+  .menu summary, .menu nav { grid-column: 1 / -1; }
+  /* Ширина списка — как у развёрнутого меню, чтобы строки не перестраивались во время анимации */
+  .menu nav { margin-top: 0; min-width: calc(var(--sidebar-width) - 2rem); }
+
+  .layout { transition: grid-template-columns var(--duration) var(--ease-out); }
+}
+
+/* Кнопка «Свернуть меню» (Sidebar.astro): только от 900px и только со скриптом (data-js в Layout.astro) */
+.sidebar-toggle { display: none; }
+@media (min-width: 900px) {
+  [data-js] .sidebar-toggle { display: inline-flex; }
+}
+/* Кнопка shadcn/ui (ghost) на зелёном фоне меню: цвета — как у пунктов меню */
+.sidebar-toggle {
+  margin: 0 0 1.25rem;
+  color: var(--color-on-primary-dim);
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out),
+    transform var(--duration) var(--ease-spring);
+}
+.sidebar-toggle:hover { background: var(--color-primary-hover); color: var(--color-on-primary); }
+.sidebar-toggle:active { transform: scale(0.92); }
+.sidebar-toggle svg { width: 20px; height: 20px; }
+.sidebar-toggle-open { display: none; }
+
+/* Свёрнутое меню — узкая полоса: логотип и под ним кнопка «Развернуть меню» */
+@media (min-width: 900px) {
+  :root[data-sidebar="collapsed"] { --sidebar-width: 4.5rem; }
+  [data-sidebar="collapsed"] .sidebar { grid-template-columns: minmax(0, 1fr); justify-items: center; padding-inline: 0.5rem; }
+  [data-sidebar="collapsed"] .site-name { margin: 0 0 1rem; }
+  [data-sidebar="collapsed"] .site-name-text,
+  [data-sidebar="collapsed"] .menu nav { display: none; }
+  [data-sidebar="collapsed"] .sidebar-toggle { margin: 0; }
+  [data-sidebar="collapsed"] .sidebar-toggle-close { display: none; }
+  [data-sidebar="collapsed"] .sidebar-toggle-open { display: block; }
 }
 
 /* На десктопе меню всегда раскрыто, кнопка «Меню» не нужна */
@@ -368,7 +463,7 @@ body {
    потому что такой угол выглядит меньше обычного того же радиуса */
 @supports (corner-shape: squircle) {
   :root { --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; }
-  .sidebar nav a, .menu summary, .toc a, .content blockquote, .content img, .content table {
+  .sidebar nav a, .menu summary, .sidebar-toggle, .toc a, .content blockquote, .content img, .content table {
     corner-shape: squircle;
   }
 }
@@ -428,5 +523,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
   :root { --duration-fast: 0s; --duration: 0s; --duration-slow: 0s; }
   .sidebar nav > ul > li > a:active, .menu summary:active, .toc a:hover, .toc a:active,
-  .to-top:active, .to-top.is-hidden { transform: none; }
+  .to-top:active, .to-top.is-hidden, .sidebar-toggle:active { transform: none; }
 }

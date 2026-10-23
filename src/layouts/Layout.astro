@@ -21,6 +21,14 @@ const { id, title, description, headings = [] } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href={withBase('favicon.ico')} sizes="any">
 <title>{title}</title>
+<script is:inline>
+  // До первой отрисовки: data-js показывает кнопку «Свернуть меню», сохранённое состояние меню
+  // применяется сразу, без мигания. Хранилище может быть недоступно — тогда меню развёрнуто
+  document.documentElement.dataset.js = '';
+  try {
+    if (localStorage.getItem('sidebar') === 'collapsed') document.documentElement.dataset.sidebar = 'collapsed';
+  } catch {}
+</script>
 </head>
 <body id="top">
 <div class="layout">
@@ -59,6 +67,25 @@ const { id, title, description, headings = [] } = Astro.props;
   menu?.addEventListener('click', (e) => {
     if (e.target.closest('a') && matchMedia('(max-width: 899px)').matches) menu.open = false;
   });
+
+  // Кнопка «Свернуть меню» (от 900px): состояние — в data-sidebar на <html>, запоминается в localStorage
+  const root = document.documentElement;
+  const sidebarToggle = document.querySelector('.sidebar-toggle');
+  const syncSidebarToggle = () => {
+    const collapsed = root.dataset.sidebar === 'collapsed';
+    sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+    sidebarToggle.setAttribute('aria-label', collapsed ? 'Развернуть меню' : 'Свернуть меню');
+  };
+  if (sidebarToggle) {
+    syncSidebarToggle();
+    sidebarToggle.addEventListener('click', () => {
+      const collapsed = root.dataset.sidebar !== 'collapsed';
+      if (collapsed) root.dataset.sidebar = 'collapsed';
+      else delete root.dataset.sidebar;
+      syncSidebarToggle();
+      try { localStorage.setItem('sidebar', collapsed ? 'collapsed' : 'expanded'); } catch {}
+    });
+  }
 
   // Кнопка «Наверх» видна, когда метка на высоте одного экрана ушла вверх за край окна.
   // Без скрипта кнопка видна всегда и всё равно работает как ссылка на #top
